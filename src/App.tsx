@@ -2,24 +2,24 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
+import { NewBookList } from './Components/NewBooksList';
+import { Navigation } from './Components/Navigation';
 
 export const App = () => {
 
   return (
-    // <Navigation />
     // <></>
 
     <React.Fragment>
       <CssBaseline />
       {/* The rest of your application */}
 
-      <div>
-        <Button variant="contained" sx={{ bgcolor: 'primary.main' }}>Hello World</Button>
-      </div>
+
+      <Navigation />
+      {/* <NewBookList></NewBookList> */}
+      {/* <Button variant="contained" sx={{ bgcolor: 'primary.main' }}>Hello World</Button> */}
+
 
     </React.Fragment>
   );
 };
-
-
-export default App;
