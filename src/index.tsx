@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-// import { store } from './store/store';
+import { store } from './store/store';
 // import { createTheme } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -13,10 +13,10 @@ const theme = createTheme({
     //   main: '#64748B',
     //   contrastText: '#fff',
     // },
-    primary: {
-      main: "#007FFF",
-      contrastText: '#313037'
-    },
+    // primary: {
+    //   main: "#007FFF",
+    //   contrastText: '#313037'
+    // },
     system: {
       main: '#313037',
       dark: '#5B5A62',
@@ -102,11 +102,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      {/* <Provider store={store}> */}
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-      {/* </Provider> */}
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>
 );
