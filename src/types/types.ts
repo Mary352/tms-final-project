@@ -31,10 +31,19 @@ export type OneBookDetailed = {
 }
 
 export type BookState = {
-   books: OneBookShort[]
+   books: OneBookShort[],
+   bookDetailed: OneBookDetailed,
+   searchInputValue: string,
+   booksFoundByTitle: OneBookShort[]
 }
 
 export type BooksResponse = {
+   error: string,
+   total: string,
+   books: OneBookShort[]
+};
+
+export type SearchBooksResponse = {
    error: string,
    total: string,
    page: string,
@@ -45,6 +54,6 @@ export type BooksResponse = {
 export type BookShortProps = {
    book: OneBookShort
 };
-export type BookDetailedProps = {
+export type OneBookPageProps = {
    book: OneBookDetailed
 };

@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { BookShortProps } from '../types/types';
+import { useNavigate } from 'react-router-dom';
 
 export const BookShort = ({ book }: BookShortProps) => {
    // const BOOK_TEST = {
@@ -25,6 +26,8 @@ export const BookShort = ({ book }: BookShortProps) => {
    //    "url": "https://itbook.store/books/9780470584644"
    // }
 
+   const navigate = useNavigate()
+
    return (
       <Grid item xs={12} md={4} sx={{
          px: 4,
@@ -39,7 +42,7 @@ export const BookShort = ({ book }: BookShortProps) => {
             // mx: 4,
 
          }}>
-            <CardActionArea>
+            <CardActionArea onClick={() => { navigate(`/books/${book.isbn13}`) }}>
                <CardMedia
                   component="img"
                   // height="100%"

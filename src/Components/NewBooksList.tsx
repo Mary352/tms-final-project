@@ -24,9 +24,6 @@ export const NewBookList = () => {
    return (
       <Grid container>
          {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
-         {/* {books.map((book: OneBookShort) => <li className={styles['one-post']} key={post.id}><Post post={post} onImgClick={showImgPopup} /></li>)} */}
-         {/* <BookShort></BookShort> */}
-
       </Grid>
    );
 }
