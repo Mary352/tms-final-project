@@ -1,3 +1,5 @@
+import { RootState } from "../store/store"
+
 export type OneBookShort = {
    title: string,
    subtitle: string,
@@ -24,19 +26,27 @@ export type OneBookDetailed = {
    image: string,
    url: string,
    pdf: Object
-   // {
-   //    "Chapter 2": "https://itbook.store/files/9781617294136/chapter2.pdf",
-   //    "Chapter 5": "https://itbook.store/files/9781617294136/chapter5.pdf"
-   // }
 }
 
+export type SearchBooksThunkParams = {
+   title: string,
+   page: number
+}
+
+
+// Initial state types
 export type BookState = {
    books: OneBookShort[],
    bookDetailed: OneBookDetailed,
    searchInputValue: string,
-   booksFoundByTitle: OneBookShort[]
+   booksFoundByTitle: OneBookShort[],
+   page: number,
+   pageQty: number,
+   // booksPerPage: number
+   status: string
 }
 
+// Response types
 export type BooksResponse = {
    error: string,
    total: string,

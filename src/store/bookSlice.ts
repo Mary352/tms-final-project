@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from './store'
-import { BookState, OneBookDetailed, OneBookShort } from '../types/types'
+import { BookState, OneBookDetailed, OneBookShort, SearchBooksResponse, SearchBooksThunkParams } from '../types/types'
 import { getBookByISBN, getNewBooks, searchBooks } from '../server/getBooks'
 
 const initialState: BookState = {
@@ -24,7 +24,11 @@ const initialState: BookState = {
       pdf: {}
    },
    searchInputValue: '',
-   booksFoundByTitle: []
+   booksFoundByTitle: [],
+   page: 1,
+   pageQty: 1,
+   // booksPerPage: 10
+   status: ''
 }
 
 export const getNewBooksThunk = createAsyncThunk('books/getNewBooksThunk', async () => {
@@ -37,8 +41,17 @@ export const getBookByISBNThunk = createAsyncThunk('books/getBookByISBNThunk', a
    return serverBook
 })
 
-export const searchBooksThunk = createAsyncThunk('books/searchBooksThunk', async (title: string) => {
-   const serverBooks = await searchBooks(title);
+export const searchBooksThunk = createAsyncThunk<SearchBooksResponse, SearchBooksThunkParams, { state: RootState }>('books/searchBooksThunk', async ({ title, page }: SearchBooksThunkParams, store) => {
+   // const state = store.getState()
+
+   // let serverBooks
+   // if (state.books.books[0].title.includes(title))
+   //    serverBooks = await searchBooks(title, page)
+   // else
+   //    serverBooks = await searchBooks(title, 1)
+
+   const serverBooks = await searchBooks(title, page)
+
    return serverBooks
 })
 
@@ -47,26 +60,43 @@ export const booksSlice = createSlice({
    initialState,
    reducers: {
       setSearchInput: (state, action: PayloadAction<string>) => {
-
          return { ...state, searchInputValue: action.payload }
-         // state.posts = action.payload
+      },
+      setPage: (state, action: PayloadAction<number>) => {
+         return { ...state, page: action.payload }
       },
    },
    extraReducers(builder) {
       builder
+         .addCase(getNewBooksThunk.pending, (state) => {
+            return { ...state, status: 'Loading...' }
+         })
          .addCase(getNewBooksThunk.fulfilled, (state, action: PayloadAction<OneBookShort[]>) => {
             return { ...state, books: action.payload }
+         })
+         .addCase(getBookByISBNThunk.pending, (state) => {
+            return { ...state, status: 'Loading...' }
          })
          .addCase(getBookByISBNThunk.fulfilled, (state, action: PayloadAction<OneBookDetailed>) => {
             return { ...state, bookDetailed: action.payload }
          })
-         .addCase(searchBooksThunk.fulfilled, (state, action: PayloadAction<OneBookShort[]>) => {
-            return { ...state, booksFoundByTitle: action.payload }
+         .addCase(searchBooksThunk.pending, (state) => {
+            return { ...state, status: 'Loading...' }
+         })
+         .addCase(searchBooksThunk.fulfilled, (state, action: PayloadAction<SearchBooksResponse>) => {
+            const { books, total } = action.payload
+
+            const totalConverted = (total && Number(total) > 0) ? Number(total) : 0
+            const booksQtyAtArr = 10
+
+            const pageQty = Math.ceil(totalConverted / booksQtyAtArr)
+
+            return { ...state, booksFoundByTitle: books, pageQty: pageQty }
          })
    },
 })
 
 // Action creators are generated for each case reducer function
-export const { setSearchInput } = booksSlice.actions
+export const { setSearchInput, setPage } = booksSlice.actions
 
 export const booksReducer = booksSlice.reducer

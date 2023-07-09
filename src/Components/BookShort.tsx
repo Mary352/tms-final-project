@@ -33,15 +33,17 @@ export const BookShort = ({ book }: BookShortProps) => {
          px: 4,
          my: 6
       }}>
-         <Card onClick={() => {
-            console.log('Card click');
-         }} sx={{
-            height: '100%',
-            maxWidth: 345,
-            p: 1,
-            // mx: 4,
-
-         }}>
+         <Card
+            onClick={() => {
+               console.log('Card click');
+            }}
+            sx={{
+               height: '100%',
+               maxWidth: 345,
+               p: 1,
+               // mx: 4,
+            }}
+            key={book.isbn13}>
             <CardActionArea onClick={() => { navigate(`/books/${book.isbn13}`) }}>
                <CardMedia
                   component="img"

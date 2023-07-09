@@ -21,12 +21,28 @@ export const getBookByISBN = async (isbn13: string) => {
    return book;
 };
 
-export const searchBooks = async (title: string) => {
-   const searchBooksUrl = new URL(DOMAIN + SEARCH + `/${title}`);
+export const searchBooks = async (title: string, page: number) => {
 
-   // localStorage.setItem('searchTitle', title)
+   const searchTitlePrev = localStorage.getItem('searchTitle')
+   console.log("🚀 ~ file: getBooks.ts:27 ~ searchBooks ~ searchTitlePrev:", searchTitlePrev)
+   console.log("🚀 ~ file: getBooks.ts:27 ~ searchBooks ~ title:", title)
+   console.log("🚀 ~ file: getBooks.ts:31 ~ searchBooks ~ searchTitlePrev !== title:", searchTitlePrev !== title)
+
+   // let searchBooksUrl
+   // if (searchTitlePrev !== title) {
+   //    searchBooksUrl = new URL(DOMAIN + SEARCH + `/${title}` + '/1')
+   //    // localStorage.setItem('page', '1')
+   // }
+   // else {
+   //    searchBooksUrl = new URL(DOMAIN + SEARCH + `/${title}` + `/${page}`)
+   //    // localStorage.setItem('page', String(page))
+   // }
+
+   localStorage.setItem('searchTitle', title)
+
+   const searchBooksUrl = new URL(DOMAIN + SEARCH + `/${title}` + `/${page}`)
 
    const response = await fetch(searchBooksUrl);
    const books: SearchBooksResponse = await response.json();
-   return books.books;
+   return books;
 };
