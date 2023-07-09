@@ -1,6 +1,6 @@
 import Box, { BoxProps } from '@mui/material/Box';
 import { BookShort } from './BookShort';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { getNewBooks } from '../server/getBooks';
 import { useAppDispatch, useAppSelector } from '../store/store';
@@ -15,15 +15,29 @@ export const NewBookList = () => {
    useEffect(() => {
 
       dispatch(getNewBooksThunk())
-      // getNewBooks().then(data => {
-      //    console.log('data', data)
-      // })
 
    }, [])
+   // }, [books])
+
+   if (books.length === 0)
+      return <h2>Books not found</h2>
 
    return (
-      <Grid container>
-         {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
-      </Grid>
+      <>
+         <Typography
+            variant="h1"
+            noWrap
+            component="h1"
+            sx={{
+               // display: { xs: 'none', sm: 'block' } 
+               p: '10px'
+            }}
+         >
+            New Releases Books
+         </Typography>
+         <Grid container>
+            {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
+         </Grid>
+      </>
    );
 }
