@@ -14,7 +14,7 @@ export const Navigation = () => {
    return <>
       <Header />
       <Routes>
-         <Route path="/">
+         <Route path="/newbooks">
             <Route index element={<NewBookList />} />
             {/* <Route path=":isbn13" element={<OneBookPage />} /> */}
          </Route>

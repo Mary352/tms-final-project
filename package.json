@@ -1,4 +1,5 @@
 {
+  "homepage": "https://mary352.github.io/tms-final-project/",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
@@ -33,7 +34,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://mary352.github.io/tms-final-project/",
   "eslintConfig": {
     "extends": [
       "react-app",
