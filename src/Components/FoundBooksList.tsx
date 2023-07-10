@@ -52,11 +52,27 @@ export const FoundBooksList = () => {
       return <h2>Books not found</h2>
 
    return (
-      <Container>
-         <Grid container>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+         {/* <Grid container>
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
 
-         </Grid>
+         </Grid> */}
+         <Box
+            sx={{
+               display: 'flex',
+               flexWrap: 'wrap',
+               // bgcolor: '#ff0000',
+               
+               // alignContent: 'flex-start',
+               // p: 1,
+               // m: 1,
+               // maxWidth: 380,
+               // height: 500,
+               // borderRadius: 1,
+            }}
+         >
+            {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
+         </Box>
          <Pagination
             count={pageQty}
             page={page}
@@ -65,8 +81,12 @@ export const FoundBooksList = () => {
             }}
             showFirstButton
             showLastButton
-            sx={{ marginX: 3, marginY: 'auto' }}
+            sx={{
+               // marginX: 3, 
+               // marginY: 'auto',
+               alignSelf: 'center'
+            }}
          />
-      </Container>
+      </div>
    );
 }

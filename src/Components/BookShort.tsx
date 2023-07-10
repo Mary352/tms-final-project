@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
+import { Box, Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { BookShortProps } from '../types/types';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,19 +29,29 @@ export const BookShort = ({ book }: BookShortProps) => {
    const navigate = useNavigate()
 
    return (
-      <Grid item xs={12} md={4} sx={{
-         px: 4,
-         my: 6
-      }}>
-         <Card
-            onClick={() => {
-               console.log('Card click');
-            }}
+      // <Grid item xs={12} md={3} sx={{
+      //    mx: 4,
+      //    my: 6,
+      //    maxWidth: 300
+      // }}>
+      <Box
+         sx={{
+            my: 6,
+            mx: 4,
+            // `calc(1em + ${theme.spacing(4)})`
+            // !
+            width: `calc(100%/3 - 32px)`
+            // ...sx,
+         }}
+      // {...other}
+      >
+         <Card onClick={() => {
+            console.log('Card click');
+         }}
             sx={{
                height: '100%',
-               maxWidth: 345,
+               width: '100%',
                p: 1,
-               // mx: 4,
             }}
             key={book.isbn13}>
             <CardActionArea onClick={() => { navigate(`/books/${book.isbn13}`) }}>
@@ -65,6 +75,9 @@ export const BookShort = ({ book }: BookShortProps) => {
                </Typography>
             </CardActionArea>
          </Card>
-      </Grid>
+
+      </Box>
+
+      // </Grid>
    );
 }

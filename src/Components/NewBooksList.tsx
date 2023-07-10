@@ -23,7 +23,7 @@ export const NewBookList = () => {
       return <h2>Books not found</h2>
 
    return (
-      <>
+      <div style={{ width: '100%' }}>
          <Typography
             variant="h1"
             noWrap
@@ -35,9 +35,25 @@ export const NewBookList = () => {
          >
             New Releases Books
          </Typography>
-         <Grid container>
+         {/* <Grid container sx={{}}>
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
-         </Grid>
-      </>
+         </Grid> */}
+         <Box
+            sx={{
+               display: 'flex',
+               flexWrap: 'wrap',
+               // bgcolor: '#ff0000',
+
+               // alignContent: 'flex-start',
+               // p: 1,
+               // m: 1,
+               // maxWidth: 380,
+               // height: 500,
+               // borderRadius: 1,
+            }}
+         >
+            {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
+         </Box>
+      </div>
    );
 }
