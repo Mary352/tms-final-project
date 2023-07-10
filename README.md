@@ -1,4 +1,5 @@
 # tms-final-project
+https://fastidious-wisp-87b23e.netlify.app/
 
 - path '/' - books new releases;
 - to see detailed info about one book click on book card;
