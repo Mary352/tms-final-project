@@ -1,5 +1,5 @@
 # tms-final-project
-https://64ac128f7ecdb9239e5a1c8e--courageous-sable-fd2e18.netlify.app/
+https://64ac615304c54b00c037d3db--harmonious-pony-d9cd60.netlify.app/books/9781912047451
 
 - path '/' - books new releases;
 - to see detailed info about one book click on book card;
