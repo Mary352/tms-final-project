@@ -23,7 +23,7 @@ export const NewBookList = () => {
       return <h2>Books not found</h2>
 
    return (
-      <div style={{ width: '100%' }}>
+      <Box sx={{ width: '100%' }}>
          <Typography
             variant="h1"
             noWrap
@@ -54,6 +54,6 @@ export const NewBookList = () => {
          >
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
          </Box>
-      </div>
+      </Box>
    );
 }
