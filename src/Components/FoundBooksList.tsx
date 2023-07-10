@@ -62,7 +62,7 @@ export const FoundBooksList = () => {
                display: 'flex',
                flexWrap: 'wrap',
                // bgcolor: '#ff0000',
-               
+
                // alignContent: 'flex-start',
                // p: 1,
                // m: 1,
@@ -84,7 +84,8 @@ export const FoundBooksList = () => {
             sx={{
                // marginX: 3, 
                // marginY: 'auto',
-               alignSelf: 'center'
+               alignSelf: 'center',
+               paddingY: '50px'
             }}
          />
       </div>

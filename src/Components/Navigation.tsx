@@ -18,12 +18,12 @@ export const Navigation = () => {
             <Route index element={<NewBookList />} />
             {/* <Route path=":isbn13" element={<OneBookPage />} /> */}
          </Route>
-         <Route path="books">
+         <Route path="/books">
             {/* <Route index element={<SearchBooksList />} /> */}
             <Route path=":isbn13" element={<OneBookPage />} />
          </Route>
 
-         <Route path="search">
+         <Route path="/search">
             {/* <Route index element={<NewBookList />} /> */}
             <Route path=":title" element={<FoundBooksList />} />
          </Route>
