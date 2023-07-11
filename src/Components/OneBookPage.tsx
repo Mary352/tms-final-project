@@ -34,7 +34,7 @@ export const OneBookPage = () => {
 
    return (
       <Box sx={{
-         maxWidth: '1120px',
+         maxWidth: '1200px',
          marginX: 'auto',
          marginY: '0',
          paddingX: '40px'
@@ -47,7 +47,7 @@ export const OneBookPage = () => {
 
          <Box sx={{
             display: 'flex',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
          }}>
             <Card
                // sx={{ width: '545px' }}

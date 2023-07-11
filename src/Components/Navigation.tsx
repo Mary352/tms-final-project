@@ -4,6 +4,7 @@ import { NewBookList } from "./NewBooksList";
 import { OneBookPage } from "./OneBookPage";
 import { Header } from "./Header";
 import { FoundBooksList } from "./FoundBooksList";
+import { Box } from "@mui/material";
 
 
 
@@ -11,7 +12,7 @@ export const Navigation = () => {
 
    // const navigate = useNavigate()
 
-   return <>
+   return <Box sx={{boxSizing: 'border-box'}}>
       <Header />
       <Routes>
          <Route path="/">
@@ -29,5 +30,5 @@ export const Navigation = () => {
          </Route>
 
       </Routes>
-   </>
+   </Box>
 }
