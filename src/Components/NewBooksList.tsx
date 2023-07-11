@@ -23,14 +23,23 @@ export const NewBookList = () => {
       return <h2>Books not found</h2>
 
    return (
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{
+         maxWidth: '1200px',
+         marginX: 'auto',
+         marginY: '0',
+         paddingX: '40px'
+      }}>
          <Typography
             variant="h1"
-            noWrap
+            // noWrap
             component="h1"
             sx={{
                // display: { xs: 'none', sm: 'block' } 
-               p: '10px'
+               // p: '10px'
+               pt: 18,
+               pb: 12,
+               // pb: 6,
+               textTransform: 'uppercase'
             }}
          >
             New Releases Books
@@ -43,7 +52,8 @@ export const NewBookList = () => {
                display: 'flex',
                flexWrap: 'wrap',
                // bgcolor: '#ff0000',
-
+               my: -6,
+               mx: -4,
                // alignContent: 'flex-start',
                // p: 1,
                // m: 1,

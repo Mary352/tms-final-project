@@ -4,7 +4,6 @@ import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-// import { createTheme } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -69,6 +68,7 @@ const theme = createTheme({
     },
   },
   spacing: 4,
+  
 });
 
 declare module '@mui/material/styles' {

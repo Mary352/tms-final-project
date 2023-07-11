@@ -69,10 +69,11 @@ export const BookShort = ({ book }: BookShortProps) => {
                   <Typography variant="body1" color="system.light">
                      {book.subtitle}
                   </Typography>
+                  <Typography gutterBottom variant="h3" component="h3">
+                     {book.price}
+                  </Typography>
                </CardContent>
-               <Typography gutterBottom variant="h3" component="h3">
-                  {book.price}
-               </Typography>
+
             </CardActionArea>
          </Card>
 
