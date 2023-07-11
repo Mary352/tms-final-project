@@ -25,6 +25,7 @@ const initialState: BookState = {
    },
    searchInputValue: '',
    booksFoundByTitle: [],
+   total: 0,
    page: 1,
    pageQty: 1,
    // booksPerPage: 10
@@ -91,7 +92,7 @@ export const booksSlice = createSlice({
 
             const pageQty = Math.ceil(totalConverted / booksQtyAtArr)
 
-            return { ...state, booksFoundByTitle: books, pageQty: pageQty }
+            return { ...state, booksFoundByTitle: books, pageQty: pageQty, total: totalConverted }
          })
    },
 })

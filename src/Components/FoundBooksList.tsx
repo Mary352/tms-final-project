@@ -15,6 +15,7 @@ export const FoundBooksList = () => {
 
 
    const books = useAppSelector(state => state.books.booksFoundByTitle)
+   const total = useAppSelector(state => state.books.total)
    const status = useAppSelector(state => state.books.status)
    const searchInputValue = useAppSelector(state => state.books.searchInputValue)
    const page = useAppSelector(state => state.books.page)
@@ -52,23 +53,64 @@ export const FoundBooksList = () => {
       return <Typography variant="h1" component='h1'>Book not found</Typography>
 
    return (
-      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{
+         maxWidth: '1200px',
+         marginX: 'auto',
+         marginY: '0',
+         paddingX: '40px',
+         display: 'flex',
+         flexDirection: 'column',
+         // alignContent: 'center'
+      }}
+      >
+         <Box
+            sx={{
+               // display: { xs: 'none', sm: 'block' } 
+               pt: 18,
+               pb: 12,
+               // pb: 6,
+               // textTransform: 'uppercase'
+            }}
+         >
+            <Typography
+               variant="h1"
+               // noWrap
+               component="h1"
+               sx={{
+                  // display: { xs: 'none', sm: 'block' }
+                  pb: 4,
+                  textTransform: 'uppercase'
+               }}
+            >
+               '{title}' Search results
+            </Typography>
+            <Typography
+               variant="body1"
+               // noWrap
+               component="p"
+               sx={{
+                  // display: { xs: 'none', sm: 'block' } 
+                  // pt: 18,
+                  // pb: 4,
+                  // pb: 6,
+                  // textTransform: 'uppercase'
+                  color: 'system.light'
+               }}
+            >
+               Found {total} books
+            </Typography>
+         </Box>
+
          {/* <Grid container>
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
-
          </Grid> */}
          <Box
             sx={{
                display: 'flex',
                flexWrap: 'wrap',
                // bgcolor: '#ff0000',
-
-               // alignContent: 'flex-start',
-               // p: 1,
-               // m: 1,
-               // maxWidth: 380,
-               // height: 500,
-               // borderRadius: 1,
+               my: -6,
+               mx: -4,
             }}
          >
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
@@ -82,10 +124,10 @@ export const FoundBooksList = () => {
             showFirstButton
             showLastButton
             sx={{
-               // marginX: 3, 
+               // marginX: 3,
                // marginY: 'auto',
                alignSelf: 'center',
-               paddingY: '50px'
+               paddingY: 18
             }}
          />
       </Box>
