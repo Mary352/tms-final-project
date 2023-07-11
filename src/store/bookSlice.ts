@@ -73,13 +73,19 @@ export const booksSlice = createSlice({
             return { ...state, status: 'loading' }
          })
          .addCase(getNewBooksThunk.fulfilled, (state, action: PayloadAction<OneBookShort[]>) => {
-            return { ...state, books: action.payload }
+            return { ...state, books: action.payload, status: 'fulfilled' }
+         })
+         .addCase(getNewBooksThunk.rejected, (state) => {
+            return { ...state, status: 'rejected' }
          })
          .addCase(getBookByISBNThunk.pending, (state) => {
             return { ...state, status: 'loading' }
          })
          .addCase(getBookByISBNThunk.fulfilled, (state, action: PayloadAction<OneBookDetailed>) => {
-            return { ...state, bookDetailed: action.payload }
+            return { ...state, bookDetailed: action.payload, status: 'fulfilled' }
+         })
+         .addCase(getBookByISBNThunk.rejected, (state) => {
+            return { ...state, status: 'rejected' }
          })
          .addCase(searchBooksThunk.pending, (state) => {
             return { ...state, status: 'loading' }
@@ -92,7 +98,10 @@ export const booksSlice = createSlice({
 
             const pageQty = Math.ceil(totalConverted / booksQtyAtArr)
 
-            return { ...state, booksFoundByTitle: books, pageQty: pageQty, total: totalConverted }
+            return { ...state, booksFoundByTitle: books, pageQty: pageQty, total: totalConverted, status: 'fulfilled' }
+         })
+         .addCase(searchBooksThunk.rejected, (state) => {
+            return { ...state, status: 'rejected' }
          })
    },
 })

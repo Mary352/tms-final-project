@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { OneBookPageProps } from "../types/types";
 import { useAppSelector, useAppDispatch } from "../store/store";
 import { useEffect, useState } from "react";
 import { getBookByISBNThunk } from "../store/bookSlice";
@@ -7,6 +6,9 @@ import { Box, Button, Card, CardContent, CardMedia, Rating, Tab, Table, TableBod
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { SubscriptionBox } from "./SubscriptionBox";
+import { BookNotFound } from "./BookNotFound";
+import { LoadingInfo } from "./LoadingInfo";
+import { ErrorMessageComp } from "./ErrorMessageComp";
 
 export const OneBookPage = () => {
    const { isbn13 } = useParams();
@@ -32,28 +34,40 @@ export const OneBookPage = () => {
       navigate(-1)
    }
 
-   if (!book.title && status !== 'loading') return (<Typography variant="h1" component='h1'>Book not found</Typography>)
+   if (status === 'loading')
+      return <LoadingInfo />
+
+
+   if (!book.title && status !== 'loading')
+      return <BookNotFound />
+
+   if (status === 'rejected')
+      return <ErrorMessageComp />
 
    return (
       <Box sx={{
          maxWidth: '1200px',
          marginX: 'auto',
          marginY: '0',
-         paddingX: '40px'
+         paddingX: { xs: '25px', md: '35px', xl: '40px' }
       }}>
-         <Button onClick={handleClickBack} sx={{ mt: 18 }}>
+         <Button onClick={handleClickBack} sx={{ mt: { xs: 14, md: 18 } }}>
             <KeyboardBackspaceIcon fontSize="large" sx={{ color: "system.main" }} />
          </Button>
 
-         <Typography variant="h1" component='h1' sx={{ pt: 8, pb: 12 }}>{book.title}</Typography>
+         <Typography variant="h1" component='h1' sx={{ pt: { xs: 6, md: 8 }, pb: { xs: 9, md: 12 } }}>{book.title}</Typography>
 
          <Box sx={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: { xs: 'stretch', xl: 'space-between' },
+            flexDirection: { xs: 'column', xl: 'row' }
          }}>
             <Card
-               // sx={{ width: '545px' }}
-               sx={{ bgcolor: 'tertiary2.light', width: '440px' }}
+               sx={{
+                  bgcolor: 'tertiary2.light',
+                  width: { xs: '100%', xl: '440px' },
+                  marginBottom: { xs: 9, md: 12, xl: 0 }
+               }}
             >
                <CardMedia
                   component="img"
@@ -62,7 +76,7 @@ export const OneBookPage = () => {
                   sx={{ width: '80%', marginX: 'auto', marginY: '0' }}
                />
             </Card>
-            <Card sx={{ width: '450px' }}>
+            <Card sx={{ width: { xs: '100%', xl: '450px' } }}>
                <CardContent sx={{
                   paddingY: 0,
                   // '&:last:child': {
@@ -86,16 +100,14 @@ export const OneBookPage = () => {
                   </Table>
                </TableContainer> */}
                   <Box sx={{
-                     display: 'flex', justifyContent: 'space-between', pt: 10, pb: 6
+                     display: 'flex', justifyContent: 'space-between', pt: { xs: 8, md: 10 }, pb: 6
                   }}>
                      <Typography variant="h2" component="h2">
                         {book.price}
                      </Typography>
                      <Rating value={Number(book.rating)}
                         sx={{
-                           pr: '10px',
-                           alignSelf: 'center'
-                           // fontSize: '40px'
+                           alignSelf: 'center',
                         }} />
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', pb: 4 }}>
@@ -127,15 +139,15 @@ export const OneBookPage = () => {
          </Box>
 
          <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', pt: 18 }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', pt: { xs: 14, md: 18 } }}>
                <TabList aria-label="Tabs for book props" onChange={handleChange} textColor="secondary" indicatorColor="secondary" >
                   <Tab sx={{ color: 'system.light', fontSize: '16px', textTransform: 'capitalize' }} label='Description' value='1' />
                   <Tab sx={{ color: 'system.light', fontSize: '16px', textTransform: 'capitalize' }} label='Authors' value='2' />
                   {/* <Tab label='Reviews' value='3' /> */}
                </TabList>
             </Box>
-            <TabPanel value='1' sx={{ pt: '50px', fontSize: '16px' }}>{book.desc}</TabPanel>
-            <TabPanel value='2' sx={{ pt: '50px', fontSize: '16px' }}>{book.authors}</TabPanel>
+            <TabPanel value='1' sx={{ pt: { xs: 9, md: 12 }, fontSize: '16px' }}>{book.desc}</TabPanel>
+            <TabPanel value='2' sx={{ pt: { xs: 9, md: 12 }, fontSize: '16px' }}>{book.authors}</TabPanel>
          </TabContext>
          <SubscriptionBox />
       </Box>)

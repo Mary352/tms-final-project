@@ -7,6 +7,9 @@ import { searchBooksThunk, setPage } from '../store/bookSlice';
 import { OneBookShort } from '../types/types';
 import { useParams } from 'react-router-dom';
 import { Container } from '@mui/system';
+import { BookNotFound } from './BookNotFound';
+import { LoadingInfo } from './LoadingInfo';
+import { ErrorMessageComp } from './ErrorMessageComp';
 
 // import {createBrowserHistory} from "history";
 
@@ -45,19 +48,22 @@ export const FoundBooksList = () => {
 
    }, [title, page])
 
-   // if (status === 'Loading...') {
-   //    return <h2>{status}</h2>
-   // }
+   if (status === 'loading')
+      return <LoadingInfo />
+
 
    if (books.length === 0 && status !== 'loading')
-      return <Typography variant="h1" component='h1'>Book not found</Typography>
+      return <BookNotFound />
+
+   if (status === 'rejected')
+      return <ErrorMessageComp />
 
    return (
       <Box sx={{
          maxWidth: '1200px',
          marginX: 'auto',
          marginY: '0',
-         paddingX: '40px',
+         paddingX: { xs: '25px', md: '35px', xl: '40px' },
          display: 'flex',
          flexDirection: 'column',
          // alignContent: 'center'
@@ -66,8 +72,8 @@ export const FoundBooksList = () => {
          <Box
             sx={{
                // display: { xs: 'none', sm: 'block' } 
-               pt: 18,
-               pb: 12,
+               pt: { xs: 14, md: 18 },
+               pb: { xs: 9, md: 12 },
                // pb: 6,
                // textTransform: 'uppercase'
             }}
@@ -89,11 +95,6 @@ export const FoundBooksList = () => {
                // noWrap
                component="p"
                sx={{
-                  // display: { xs: 'none', sm: 'block' } 
-                  // pt: 18,
-                  // pb: 4,
-                  // pb: 6,
-                  // textTransform: 'uppercase'
                   color: 'system.light'
                }}
             >
@@ -109,8 +110,8 @@ export const FoundBooksList = () => {
                display: 'flex',
                flexWrap: 'wrap',
                // bgcolor: '#ff0000',
-               my: -6,
-               mx: -4,
+               my: { xs: '-18px', md: -6 },
+               mx: { md: -4 },
             }}
          >
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
@@ -127,7 +128,7 @@ export const FoundBooksList = () => {
                // marginX: 3,
                // marginY: 'auto',
                alignSelf: 'center',
-               paddingY: 18
+               paddingY: { xs: 14, md: 18 }
             }}
          />
       </Box>
