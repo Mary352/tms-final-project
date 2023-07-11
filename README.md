@@ -1,5 +1,5 @@
 # tms-final-project
-https://64ad32c0061570117a1603d5--dainty-genie-d1f7cc.netlify.app/
+https://64ad412fcf11151ad59c6299--legendary-mochi-f770ea.netlify.app/
 
 - path '/' - books new releases;
 - to see detailed info about one book click on book card;
