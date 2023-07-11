@@ -1,6 +1,6 @@
 import Box, { BoxProps } from '@mui/material/Box';
 import { BookShort } from './BookShort';
-import { Grid, Pagination } from '@mui/material';
+import { Grid, Pagination, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { searchBooksThunk, setPage } from '../store/bookSlice';
@@ -48,11 +48,11 @@ export const FoundBooksList = () => {
    //    return <h2>{status}</h2>
    // }
 
-   if (books.length === 0)
-      return <h2>Books not found</h2>
+   if (books.length === 0 && status !== 'loading')
+      return <Typography variant="h1" component='h1'>Book not found</Typography>
 
    return (
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
          {/* <Grid container>
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
 
@@ -88,6 +88,6 @@ export const FoundBooksList = () => {
                paddingY: '50px'
             }}
          />
-      </div>
+      </Box>
    );
 }

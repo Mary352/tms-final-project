@@ -13,6 +13,7 @@ export const OneBookPage = () => {
    const [value, setValue] = useState('1')
 
    const book = useAppSelector((state) => state.books.bookDetailed)
+   const status = useAppSelector(state => state.books.status)
    const dispatch = useAppDispatch()
 
    const navigate = useNavigate()
@@ -30,7 +31,7 @@ export const OneBookPage = () => {
       navigate(-1)
    }
 
-   if (!book.title) return (<Typography variant="h1" component='h1'>Book not found</Typography>)
+   if (!book.title && status !== 'loading') return (<Typography variant="h1" component='h1'>Book not found</Typography>)
 
    return (
       <Box sx={{

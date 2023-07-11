@@ -68,7 +68,7 @@ const theme = createTheme({
     },
   },
   spacing: 4,
-  
+
 });
 
 declare module '@mui/material/styles' {

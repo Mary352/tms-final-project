@@ -45,39 +45,72 @@ export const BookShort = ({ book }: BookShortProps) => {
          }}
       // {...other}
       >
-         <Card onClick={() => {
-            console.log('Card click');
-         }}
+         <CardActionArea onClick={() => { navigate(`/books/${book.isbn13}`) }}
             sx={{
                height: '100%',
                width: '100%',
-               p: 1,
-            }}
-            key={book.isbn13}>
-            <CardActionArea onClick={() => { navigate(`/books/${book.isbn13}`) }}>
+            }}>
+            <Card
+               sx={{
+                  bgcolor: 'tertiary.light',
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column'
+               }}
+               key={book.isbn13}>
+               {/* <CardActionArea
+                  sx={{
+                     display: 'flex',
+                     flexDirection: 'column'
+
+                  }}
+               > */}
                <CardMedia
                   component="img"
                   // height="100%"
                   image={book.image}
                   alt="book"
-               // sx={{ maxWidth: 0.8 }}
+                  sx={{
+                     width: '65%',
+                     marginX: 'auto',
+                     marginY: '0',
+                     // bgcolor: '#00ff00'
+                  }}
                />
-               <CardContent>
-                  <Typography gutterBottom variant="h3" component="h3">
+               <CardContent
+                  sx={{
+                     bgcolor: '#fff',
+                     flexGrow: 1,
+                     pt: 5,
+                     pb: 10
+                  }}
+               >
+                  <Typography variant="h3" component="h3"
+                     sx={{ pb: 2 }}
+                  >
                      {book.title}
                   </Typography>
-                  <Typography variant="body1" color="system.light">
+                  <Typography variant="body1" component='p' color="system.light">
                      {book.subtitle}
                   </Typography>
-                  <Typography gutterBottom variant="h3" component="h3">
+               </CardContent>
+               <CardContent
+                  sx={{
+                     bgcolor: '#fff',
+                     alignSelf: 'stretch',
+                     paddingY: 0
+                  }}
+               >
+                  <Typography variant="h3" component="h3"
+                     sx={{}}>
                      {book.price}
                   </Typography>
                </CardContent>
-
-            </CardActionArea>
-         </Card>
-
-      </Box>
+               {/* </CardActionArea> */}
+            </Card>
+         </CardActionArea>
+      </Box >
 
       // </Grid>
    );

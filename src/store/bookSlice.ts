@@ -69,19 +69,19 @@ export const booksSlice = createSlice({
    extraReducers(builder) {
       builder
          .addCase(getNewBooksThunk.pending, (state) => {
-            return { ...state, status: 'Loading...' }
+            return { ...state, status: 'loading' }
          })
          .addCase(getNewBooksThunk.fulfilled, (state, action: PayloadAction<OneBookShort[]>) => {
             return { ...state, books: action.payload }
          })
          .addCase(getBookByISBNThunk.pending, (state) => {
-            return { ...state, status: 'Loading...' }
+            return { ...state, status: 'loading' }
          })
          .addCase(getBookByISBNThunk.fulfilled, (state, action: PayloadAction<OneBookDetailed>) => {
             return { ...state, bookDetailed: action.payload }
          })
          .addCase(searchBooksThunk.pending, (state) => {
-            return { ...state, status: 'Loading...' }
+            return { ...state, status: 'loading' }
          })
          .addCase(searchBooksThunk.fulfilled, (state, action: PayloadAction<SearchBooksResponse>) => {
             const { books, total } = action.payload
