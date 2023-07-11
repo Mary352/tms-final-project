@@ -40,6 +40,7 @@ export type BookState = {
    bookDetailed: OneBookDetailed,
    searchInputValue: string,
    booksFoundByTitle: OneBookShort[],
+   total: number,
    page: number,
    pageQty: number,
    // booksPerPage: number
