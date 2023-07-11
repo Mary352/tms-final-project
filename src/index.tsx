@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     // neutral: {
     //   main: '#64748B',
@@ -41,9 +41,31 @@ const theme = createTheme({
       light: '#FEE9E2',
     },
   },
+
+  spacing: 4,
+  breakpoints: {
+    values: {
+      xs: 0,
+      // sm: 600,
+      md: 768,
+      // lg: 1200,
+      // xl: 1536
+      xl: 1200
+      // mobile: 768,
+      // tablet: 1200
+    }
+  }
+});
+
+const { breakpoints } = theme
+
+theme = createTheme(theme, {
   typography: {
     h1: {
       fontSize: 56,
+      [breakpoints.down("md")]: {
+        fontSize: 32
+      },
       fontWeight: 700
     },
     h2: {
@@ -56,6 +78,9 @@ const theme = createTheme({
     },
     subtitle1: {
       fontSize: 18,
+      [breakpoints.down("md")]: {
+        fontSize: 16
+      },
       fontWeight: 700
     },
     body1: {
@@ -67,9 +92,7 @@ const theme = createTheme({
       fontWeight: 700
     },
   },
-  spacing: 4,
-
-});
+})
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -89,6 +112,18 @@ declare module '@mui/material/styles' {
     contextual?: PaletteOptions['primary'];
     tertiary?: PaletteOptions['primary'];
     tertiary2?: PaletteOptions['primary'];
+  }
+
+  interface BreakpointOverrides {
+    // xs: false; // removes the `xs` breakpoint
+    sm: false;
+    // md: false;
+    lg: false;
+    // xl: false;
+    // mobile: true; // adds the `mobile` breakpoint
+    // tablet: true;
+    // laptop: true;
+    // desktop: true;
   }
 }
 

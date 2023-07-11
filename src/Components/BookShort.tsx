@@ -36,14 +36,14 @@ export const BookShort = ({ book }: BookShortProps) => {
       // }}>
       <Box
          sx={{
-            my: 6,
-            mx: 4,
-            // `calc(1em + ${theme.spacing(4)})`
-            // !
-            width: `calc(100%/3 - 32px)`
-            // ...sx,
+            my: { xs: '18px', md: 6 },
+            mx: { md: 4 },
+            width: {
+               xs: '100%',
+               md: 'calc(100%/2 - 32px)',
+               xl: `calc(100%/3 - 32px)`
+            }
          }}
-      // {...other}
       >
          <CardActionArea onClick={() => { navigate(`/books/${book.isbn13}`) }}
             sx={{
@@ -83,7 +83,7 @@ export const BookShort = ({ book }: BookShortProps) => {
                      bgcolor: '#fff',
                      flexGrow: 1,
                      pt: 5,
-                     pb: 10
+                     pb: { xs: 8, md: 10 }
                   }}
                >
                   <Typography variant="h3" component="h3"

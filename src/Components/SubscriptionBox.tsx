@@ -16,10 +16,10 @@ export const SubscriptionBox = () => {
    return (
       <Box
          sx={{
-            paddingX: 14,
-            paddingY: 16,
+            paddingX: { xs: 6, md: 14 },
+            paddingY: { xs: 6, md: 16 },
             bgcolor: 'tertiary.light',
-            marginY: 18
+            marginY: { xs: 14, md: 18 }
          }}
       >
          <Typography
@@ -27,10 +27,7 @@ export const SubscriptionBox = () => {
             // noWrap
             component="h2"
             sx={{
-               // display: { xs: 'none', sm: 'block' } 
-               // pt: 18,
-               pb: 6,
-               // pb: 6,
+               pb: { xs: 3, md: 6 },
                textTransform: 'uppercase'
             }}
          >
@@ -42,17 +39,24 @@ export const SubscriptionBox = () => {
             component="p"
             sx={{
                // display: { xs: 'none', sm: 'block' } 
-               pb: 8,
+               pb: { xs: 6, md: 8 },
                color: 'system.light',
                fontWeight: 400
             }}
          >
             Be the first to know about new IT books, upcoming releases, exclusive offers and more.
          </Typography>
-         <Box sx={{ display: 'flex', width: '100%' }}>
-            <TextField sx={{ width: '80%' }} label="Your email" variant="outlined" value={email} onChange={handleEmailChange} />
+         <Box sx={{ display: 'flex', width: '100%', flexWrap: 'wrap' }}>
+            <TextField sx={{
+               width: { xs: '100%', md: '80%' },
+               bgcolor: '#fff',
+               marginBottom: { xs: 6, md: 0 }
+            }}
+               label="Your email" variant="outlined" value={email} onChange={handleEmailChange} />
+
             <Button variant='contained' sx={{
-               width: '20%',
+               width: { xs: '100%', md: '20%' },
+               paddingY: { xs: 4, md: 'inherit' },
                bgcolor: 'system.main',
                color: '#fff',
                textTransform: 'uppercase',
