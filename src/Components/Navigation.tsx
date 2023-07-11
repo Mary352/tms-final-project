@@ -5,6 +5,7 @@ import { OneBookPage } from "./OneBookPage";
 import { Header } from "./Header";
 import { FoundBooksList } from "./FoundBooksList";
 import { Box } from "@mui/material";
+import { Footer } from "./Footer";
 
 
 
@@ -30,5 +31,6 @@ export const Navigation = () => {
          </Route>
 
       </Routes>
+      <Footer />
    </Box>
 }
