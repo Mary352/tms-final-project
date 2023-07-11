@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { getNewBooksThunk } from '../store/bookSlice';
 import { OneBookShort } from '../types/types';
+import { SubscriptionBox } from './SubscriptionBox';
 
 export const NewBookList = () => {
 
@@ -57,6 +58,7 @@ export const NewBookList = () => {
          >
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
          </Box>
+         <SubscriptionBox />
       </Box>
    );
 }

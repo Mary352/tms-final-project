@@ -52,7 +52,7 @@ export const BookShort = ({ book }: BookShortProps) => {
             }}>
             <Card
                sx={{
-                  bgcolor: 'tertiary.light',
+                  bgcolor: 'tertiary2.main',
                   height: '100%',
                   width: '100%',
                   display: 'flex',
