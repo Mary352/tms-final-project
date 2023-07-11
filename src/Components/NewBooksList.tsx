@@ -1,8 +1,7 @@
-import Box, { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import { BookShort } from './BookShort';
-import { Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useEffect } from 'react';
-import { getNewBooks } from '../server/getBooks';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { getNewBooksThunk } from '../store/bookSlice';
 import { OneBookShort } from '../types/types';
@@ -10,6 +9,7 @@ import { OneBookShort } from '../types/types';
 export const NewBookList = () => {
 
    const books = useAppSelector(state => state.books.books)
+   const status = useAppSelector(state => state.books.status)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
@@ -19,8 +19,8 @@ export const NewBookList = () => {
    }, [])
    // }, [books])
 
-   if (books.length === 0)
-      return <h2>Books not found</h2>
+   if (books.length === 0 && status !== 'loading')
+      return <Typography variant="h1" component='h1'>Books not found</Typography>
 
    return (
       <Box sx={{
@@ -35,7 +35,6 @@ export const NewBookList = () => {
             component="h1"
             sx={{
                // display: { xs: 'none', sm: 'block' } 
-               // p: '10px'
                pt: 18,
                pb: 12,
                // pb: 6,
@@ -54,12 +53,6 @@ export const NewBookList = () => {
                // bgcolor: '#ff0000',
                my: -6,
                mx: -4,
-               // alignContent: 'flex-start',
-               // p: 1,
-               // m: 1,
-               // maxWidth: 380,
-               // height: 500,
-               // borderRadius: 1,
             }}
          >
             {books.map((book: OneBookShort) => <BookShort book={book}></BookShort>)}
