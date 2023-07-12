@@ -59,7 +59,7 @@ export const OneBookPage = () => {
 
          <Box sx={{
             display: 'flex',
-            justifyContent: { xs: 'stretch', xl: 'space-between' },
+            justifyContent: { xs: 'normal', xl: 'space-between' },
             flexDirection: { xs: 'column', xl: 'row' }
          }}>
             <Card

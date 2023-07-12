@@ -70,5 +70,6 @@ export type OneBookPageProps = {
 };
 
 export type SearchInputProps = {
-   tablet?: boolean
+   tablet?: boolean,
+   onSideBarClick?: (event: React.MouseEvent) => void
 }

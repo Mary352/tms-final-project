@@ -98,7 +98,7 @@ export const BookShort = ({ book }: BookShortProps) => {
                <CardContent
                   sx={{
                      bgcolor: '#fff',
-                     alignSelf: 'stretch',
+                     alignSelf: 'normal',
                      paddingY: 0
                   }}
                >
