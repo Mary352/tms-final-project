@@ -47,7 +47,8 @@ const SearchWrapperDesktop = styled('div')(({ theme }) => ({
 
 const SearchWrapperTablet = styled('div')(({ theme }) => ({
    display: 'flex',
-   justifyContent: 'center',
+   justifyContent: 'stretch',
+   paddingTop: '56px',
    width: '100%',
    // backgroundColor: '#00ff00',
    // [theme.breakpoints.down('xl')]: {
@@ -61,7 +62,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
    borderRight: 'none',
    borderColor: theme.palette.bgColor.dark,
    // height: '56px',
-   width: '35%',
+   width: '85%',
+   [theme.breakpoints.up('xl')]: {
+      width: '35%',
+   },
+
    padding: 0,
    // margin: '0 auto',
    '& .MuiInputBase-input': {
@@ -71,18 +76,24 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
    },
 }));
 
-export const SearchInput = ({ tablet }: SearchInputProps) => {
+export const SearchInput = ({ tablet, onSideBarClick }: SearchInputProps) => {
 
    const searchInputValue = useAppSelector(state => state.books.searchInputValue)
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
 
    const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (onSideBarClick) {
+         onSideBarClick(e)
+      }
+
       if (searchInputValue) {
          navigate(`/search/${searchInputValue}`)
          dispatch(setSearchInput(''))
       }
       else navigate('/')
+
+
    }
 
    const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -106,7 +117,8 @@ export const SearchInput = ({ tablet }: SearchInputProps) => {
             borderRadius: '0px',
             padding: '3px',
             height: 1,
-            width: '5%',
+            width: { xs: '15%', xl: '5%' },
+
             // margin: '0 auto'
             // height: '56px'
          }}
@@ -117,9 +129,14 @@ export const SearchInput = ({ tablet }: SearchInputProps) => {
       </Button>
    )
 
-   // if (tablet) {
-   //    return ()
-   // }
+   if (tablet) {
+      return (
+         <SearchWrapperTablet>
+            {SearchField}
+            {SearchButton}
+         </SearchWrapperTablet>
+      )
+   }
 
    return (
       <SearchWrapperDesktop>
