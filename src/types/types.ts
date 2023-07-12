@@ -68,3 +68,7 @@ export type BookShortProps = {
 export type OneBookPageProps = {
    book: OneBookDetailed
 };
+
+export type SearchInputProps = {
+   tablet?: boolean
+}

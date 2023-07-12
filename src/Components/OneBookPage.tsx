@@ -38,7 +38,7 @@ export const OneBookPage = () => {
       return <LoadingInfo />
 
 
-   if (!book.title && status !== 'loading')
+   if (!book.title && status === 'fulfilled')
       return <BookNotFound />
 
    if (status === 'rejected')
