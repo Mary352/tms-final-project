@@ -19,85 +19,98 @@ import { Button, SvgIcon, TextField } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { searchBooksThunk, setSearchInput } from '../store/bookSlice';
 import { useNavigate } from 'react-router-dom';
+import { SearchInput } from './SearchInput';
 
-const Search = styled('div')(({ theme }) => ({
-   display: 'flex',
-   justifyContent: 'center',
-   // position: 'relative',
-   // margin: '0 auto',
-   // marginTop: 0,
-   // marginBottom: 0,
-   // marginRight: 'auto',
-   // marginLeft: 'auto',
+// const Search = styled('div')(({ theme }) => ({
+//    display: 'flex',
+//    justifyContent: 'center',
+//    width: '100%',
+//    // backgroundColor: '#00ff00',
+//    [theme.breakpoints.down('xl')]: {
+//       display: 'none',
+//    }
 
-   // marginY: 0,
-   // justifyContent: 'center',
-   // borderRadius: theme.shape.borderRadius,
-   // backgroundColor: alpha(theme.palette.common.white, 0.15),
-   '&:hover': {
-      // backgroundColor: alpha(theme.palette.common.white, 0.25),
-   },
-   // marginRight: theme.spacing(2),
-   // marginLeft: 0,
-   width: '100%',
-   [theme.breakpoints.up('md')]: {
-      // marginLeft: theme.spacing(3),
-      // width: 'auto',
-   },
-}));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-   padding: theme.spacing(0, 2),
-   height: '100%',
-   position: 'absolute',
-   pointerEvents: 'none',
-   display: 'flex',
-   alignItems: 'center',
-   justifyContent: 'center',
-   border: 'none'
-}));
+//    // [theme.breakpoints.down('xl')]: {
+//    //    // width: '20ch',
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-   color: 'inherit',
-   border: '1px solid',
-   borderRight: 'none',
-   borderColor: theme.palette.bgColor.dark,
-   // height: '56px',
-   width: '35%',
-   padding: 0,
-   // margin: '0 auto',
-   '& .MuiInputBase-input': {
-      // padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      // !
-      // paddingLeft: `${theme.spacing(4)}`,
-      padding: `${theme.spacing(3)} 0px ${theme.spacing(3)} ${theme.spacing(5)}`,
-      // transition: theme.transitions.create('width'),
-      // !
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-         // width: '20ch',
-      },
-   },
-}));
+//    // },
+//    // position: 'relative',
+//    // margin: '0 auto',
+//    // marginTop: 0,
+//    // marginBottom: 0,
+//    // marginRight: 'auto',
+//    // marginLeft: 'auto',
+
+//    // marginY: 0,
+//    // justifyContent: 'center',
+//    // borderRadius: theme.shape.borderRadius,
+//    // backgroundColor: alpha(theme.palette.common.white, 0.15),
+//    // '&:hover': {
+//    //    backgroundColor: alpha(theme.palette.common.white, 0.25),
+//    // },
+//    // marginRight: theme.spacing(2),
+//    // marginLeft: 0,
+//    // [theme.breakpoints.up('md')]: {
+//    //    // marginLeft: theme.spacing(3),
+//    //    // width: 'auto',
+//    // },
+// }));
+
+// const SearchIconWrapper = styled('div')(({ theme }) => ({
+//    padding: theme.spacing(0, 2),
+//    height: '100%',
+//    position: 'absolute',
+//    pointerEvents: 'none',
+//    display: 'flex',
+//    alignItems: 'center',
+//    justifyContent: 'center',
+//    border: 'none'
+// }));
+
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//    color: 'inherit',
+//    border: '1px solid',
+//    borderRight: 'none',
+//    borderColor: theme.palette.bgColor.dark,
+//    // height: '56px',
+//    width: '35%',
+//    padding: 0,
+//    // margin: '0 auto',
+//    '& .MuiInputBase-input': {
+//       // padding: theme.spacing(1, 1, 1, 0),
+//       // vertical padding + font size from searchIcon
+//       // !
+//       // paddingLeft: `${theme.spacing(4)}`,
+//       padding: `${theme.spacing(3)} 0px ${theme.spacing(3)} ${theme.spacing(5)}`,
+//       // transition: theme.transitions.create('width'),
+//       // !
+//       width: '100%',
+//       // [theme.breakpoints.up('md')]: {
+//       //    // width: '20ch',
+
+//       // },
+//    },
+// }));
+
 
 export const Header = () => {
-   const searchInputValue = useAppSelector(state => state.books.searchInputValue)
-   const dispatch = useAppDispatch()
-   const navigate = useNavigate()
+   // const searchInputValue = useAppSelector(state => state.books.searchInputValue)
+   // const dispatch = useAppDispatch()
+   // const navigate = useNavigate()
 
-   const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      if (searchInputValue) {
-         navigate(`/search/${searchInputValue}`)
-         dispatch(setSearchInput(''))
-      }
-      else navigate('/')
-   }
+   // const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+   //    if (searchInputValue) {
+   //       navigate(`/search/${searchInputValue}`)
+   //       dispatch(setSearchInput(''))
+   //    }
+   //    else navigate('/')
+   // }
 
-   const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+   // const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 
-      dispatch(setSearchInput(e.target.value))
-   }
+   //    dispatch(setSearchInput(e.target.value))
+   // }
 
 
    return (
@@ -138,7 +151,8 @@ export const Header = () => {
          >
             BOOKSTORE
          </Typography> */}
-         <Search>
+         <SearchInput  />
+         {/* <Search>
             <StyledInputBase
                placeholder="Search…"
                inputProps={{ 'aria-label': 'search' }}
@@ -154,19 +168,12 @@ export const Header = () => {
                   padding: '3px',
                   height: 1,
                   width: '5%',
-                  // margin: '0 auto'
-                  // height: '56px'
                }}
             >
-               {/* <SearchIconWrapper> */}
                <SearchIcon sx={{ fill: '#4C4B5E' }} />
-               {/* </SearchIconWrapper> */}
             </Button>
 
-            {/* <InputBase placeholder='smth' sx={{ border: '1px solid red' }} />
-            <TextField sx={{ border: '1px solid red' }} />
-            <Button sx={{ bgcolor: '#00ff00', border: '1px solid red' }}>Bu</Button> */}
-         </Search>
+         </Search> */}
       </Box>
       // <Box sx={{ flexGrow: 1 }}>
       //    <AppBar position="static" sx={{ bgcolor: '#fff', color: 'system.main' }}>

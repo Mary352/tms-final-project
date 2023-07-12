@@ -27,7 +27,7 @@ export const NewBookList = () => {
       return <LoadingInfo />
 
 
-   if (books.length === 0 && status !== 'loading')
+   if (books.length === 0 && status === 'fulfilled')
       return <BookNotFound />
 
    if (status === 'rejected')
