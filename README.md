@@ -1,5 +1,4 @@
 # tms-final-project
-https://64ae7d69829835104cd09cf3--resplendent-faun-b978a5.netlify.app/
 
 - path '/' - books new releases;
 - to see detailed info about one book click on book card;
